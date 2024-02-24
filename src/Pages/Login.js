@@ -1,14 +1,4 @@
-import {
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import edificioImage from "../assets/edificio.jpg";
 import LabNlLogo from "../assets/labnlLogo.svg";
 
@@ -35,7 +25,7 @@ const imageTypographyStyle = {
 
 const logoStyle = {
   width: "30%",
-  paddingBottom: "3rem",
+  paddingBottom: "5rem",
 };
 
 const formItemTitle = {
@@ -52,7 +42,7 @@ function Login() {
         width="50%"
         height="100vh"
         backgroundColor="#fcfcfc"
-        padding="4rem"
+        padding="6rem 4rem 4rem 4rem"
         overflow="auto"
       >
         <img style={logoStyle} src={LabNlLogo} alt="" />
@@ -64,13 +54,13 @@ function Login() {
                 fontSize="2rem"
                 fontWeight="800"
               >
-                Regístrate
+                Bienvenido
               </Typography>
             </Grid>
             <Grid item>
               <Typography fontFamily={fontFamily}>
-                Registrate para tener acceso al laboratorio ciudadano,
-                participar en las convocatorias, asistir a eventos y mucho más.
+                En LABNL las y los ciudadanos colaboramos, experimentamos y
+                prototipamos proyectos para el bien común.
               </Typography>
             </Grid>
           </Grid>
@@ -113,375 +103,38 @@ function Login() {
                   }}
                 />
               </Grid>
-              <Typography color="rgba(0,0,0,0.4)" fontSize="0.9rem">
-                Debe contener al menos 8 caracteres
+              <Typography
+                sx={{ textDecoration: "underline" }}
+                color="rgba(0,0,0,0.6)"
+                fontSize="0.9rem"
+                paddingTop="1rem"
+              >
+                ¿Olvidaste tu contraseña?
               </Typography>
-            </Grid>
-          </Grid>
 
-          <Grid item container paddingBottom="1.5rem">
-            <Grid item container>
-              <Typography fontWeight="800" fontSize="1.2rem">
-                Datos Personales
-              </Typography>
-            </Grid>
-
-            <Grid item container gap="4%">
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>Nombre</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Tu nombre"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>Apellidos</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Tus apellidos"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>
-                    Fecha de nacimiento
+              <Grid item container paddingTop="3rem">
+                <Button variant="contained" fullWidth>
+                  <Typography textTransform="capitalize" padding="0.5rem">
+                    Iniciar sesión
                   </Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="mm/dd/yyyy"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
+                </Button>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>
-                    País de nacimiento
-                  </Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Mexico"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography
-                    style={formItemTitle}
-                  >{`Teléfono (opcional)`}</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="123 123 1234"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>{`Género`}</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Selecciona tu género"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography
-                    style={formItemTitle}
-                  >{`Escolaridad (opcional)`}</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Selecciona tu escolaridad"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid item container paddingBottom="1rem">
-            <Grid item container>
-              <Typography fontWeight="800" fontSize="1.2rem">
-                Lugar de residencia
-              </Typography>
-            </Grid>
-
-            <Grid item container gap="4%">
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>Código Postal</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Código postal"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>Estado</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Estado"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>Ciudad</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Ciudad"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid item container flex="48%" flexDirection="column">
-                <Grid item>
-                  <Typography style={formItemTitle}>Colonia</Typography>
-                </Grid>
-                <Grid item backgroundColor="#ffffff">
-                  <TextField
-                    required
-                    id="outlined-required"
-                    placeholder="Colonia"
-                    fullWidth
-                    InputProps={{
-                      classes: {
-                        input: { fontFamily: fontFamily },
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid item container>
-            <Grid item container paddingBottom="1rem">
-              <Typography fontWeight="800" fontSize="1.2rem">
-                Datos Generales
-              </Typography>
-            </Grid>
-
-            <Grid item container>
-              <Grid item container flexDirection="column">
-                <Grid item>
-                  <Typography>¿Tienes alguna discapacidad?</Typography>
-                </Grid>
-                <Grid item>
-                  <FormControl>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="row-radio-buttons-group"
-                    >
-                      <FormControlLabel
-                        value="no"
-                        control={<Radio />}
-                        label="No"
-                      />
-                      <FormControlLabel
-                        value="si"
-                        control={<Radio />}
-                        label="Si"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
-              </Grid>
-
-              <Grid item container flexDirection="column">
-                <Grid item>
-                  <Typography>¿Hablas alguna lengua indígena?</Typography>
-                </Grid>
-                <Grid item>
-                  <FormControl>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="row-radio-buttons-group"
-                    >
-                      <FormControlLabel
-                        value="no"
-                        control={<Radio />}
-                        label="No"
-                      />
-                      <FormControlLabel
-                        value="si"
-                        control={<Radio />}
-                        label="Si"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
-              </Grid>
-
-              <Grid item container flexDirection="column">
-                <Grid item>
-                  <Typography>
-                    ¿Perteneces a una asociación u organización?
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <FormControl>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="row-radio-buttons-group"
-                    >
-                      <FormControlLabel
-                        value="no"
-                        control={<Radio />}
-                        label="No"
-                      />
-                      <FormControlLabel
-                        value="si"
-                        control={<Radio />}
-                        label="Si"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid item container paddingTop="1.5rem">
-            <Grid item container marginLeft="-0.6rem" alignItems="center">
-              <Grid item>
-                <Checkbox defaultChecked />
-              </Grid>
-              <Grid item>
+              <Grid item container paddingTop="6rem">
                 <Grid container>
                   <Grid item>
-                    <Typography>Acepto las&nbsp;</Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography sx={{ textDecoration: "underline" }}>
-                      Políticas de Privacidad
+                    <Typography color="rgba(0,0,0,0.6)">
+                      ¿Aún no te has registrado?,&nbsp;
                     </Typography>
                   </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-
-            <Grid item container paddingTop="2rem">
-              <Button variant="contained" fullWidth>
-                <Typography textTransform="capitalize" padding="0.5rem">
-                  Registrarme
-                </Typography>
-              </Button>
-            </Grid>
-
-            <Grid item container paddingTop="2rem">
-              <Grid container>
-                <Grid item>
-                  <Typography>¿Ya te habías registrado?,&nbsp;</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography sx={{ textDecoration: "underline" }}>
-                    Inicia sesión aquí
-                  </Typography>
+                  <Grid item>
+                    <Typography
+                      color="rgba(0,0,0,0.6)"
+                      sx={{ textDecoration: "underline" }}
+                    >
+                      Regístrate aquí
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>

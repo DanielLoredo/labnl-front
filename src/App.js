@@ -1,4 +1,6 @@
 import { ThemeProvider, createTheme } from "@mui/material";
+import Signup from "./Pages/SignUp";
+import { Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login";
 
 const theme = createTheme({
@@ -15,7 +17,10 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Login />
+      <Routes>
+        <Route path="/" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </ThemeProvider>
   );
 }
