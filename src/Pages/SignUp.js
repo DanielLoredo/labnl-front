@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Button,
   Checkbox,
@@ -11,6 +12,7 @@ import {
 } from "@mui/material";
 import edificioImage from "../assets/edificio.jpg";
 import LabNlLogo from "../assets/labnlLogo.svg";
+import axios from "axios";
 
 const fontFamily = "Roboto, monospace";
 
@@ -44,7 +46,18 @@ const formItemTitle = {
   padding: "1rem 0 0 1rem",
 };
 
+const url = "http://localhost:8000";
+
 function SignUp() {
+  const [userName, setUserName] = useState("Pablito");
+
+  const createUser = async () => {
+    await axios.post(`${url}/user`, {
+      id: "",
+      userName: userName,
+    });
+  };
+
   return (
     <Grid container width="100%" minHeight="100vh" position="relative">
       <Grid
@@ -466,7 +479,7 @@ function SignUp() {
             </Grid>
 
             <Grid item container paddingTop="2rem">
-              <Button variant="contained" fullWidth>
+              <Button variant="contained" fullWidth onClick={createUser}>
                 <Typography textTransform="capitalize" padding="0.5rem">
                   Registrarme
                 </Typography>
