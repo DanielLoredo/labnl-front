@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Box,
   Button,
   Checkbox,
   FormControl,
@@ -13,6 +14,8 @@ import {
 import edificioImage from "../assets/edificio.jpg";
 import LabNlLogo from "../assets/labnlLogo.svg";
 import axios from "axios";
+import { url } from "../helpers/API";
+import { useNavigate } from "react-router-dom";
 
 const fontFamily = "Roboto, monospace";
 
@@ -46,16 +49,54 @@ const formItemTitle = {
   padding: "1rem 0 0 1rem",
 };
 
-const url = "http://localhost:8000";
-
 function SignUp() {
-  const [userName, setUserName] = useState("Pablito");
+  const navigate = useNavigate();
 
-  const createUser = async () => {
-    await axios.post(`${url}/user`, {
-      id: "",
-      userName: userName,
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellidos, setApellidos] = useState("");
+  const [fechaNacimiento, setFechaNacimiento] = useState("");
+  const [paisNacimiento, setPaisNacimiento] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [genero, setGenero] = useState("");
+  const [escolaridad, setEscolaridad] = useState("");
+  const [codigoPostal, setCodigoPostal] = useState("");
+  const [estado, setEstado] = useState("");
+  const [ciudad, setCiudad] = useState("");
+  const [colonia, setColonia] = useState("");
+  const [discapacidad, setDiscapacidad] = useState("");
+  const [lenguaIndigena, setLenguaIndigena] = useState("");
+  const [asociacion, setAsociacion] = useState("");
+
+  const signupUser = async () => {
+    const singupUserResponse = await axios.post(`${url}/signup`, {
+      email: email,
+      password: password,
+      nombre: nombre,
+      apellidos: apellidos,
+      fechaNacimiento: fechaNacimiento,
+      paisNacimiento: paisNacimiento,
+      telefono: telefono,
+      genero: genero,
+      escolaridad: escolaridad,
+      codigoPostal: codigoPostal,
+      estado: estado,
+      ciudad: ciudad,
+      colonia: colonia,
+      capacidadEspecial: discapacidad,
+      lenguaIndigena: lenguaIndigena,
+      asociacion: asociacion,
+      nombreAsociacion: "",
+      ocupacion: "Estudiante",
+      deseasRecibirInformacion: "",
     });
+
+    if (singupUserResponse.data.user) {
+      navigate("/login", { state: singupUserResponse.data.user });
+    } else {
+      console.log("Uno de los campos ingresados no es valido");
+    }
   };
 
   return (
@@ -67,6 +108,8 @@ function SignUp() {
         backgroundColor="#fcfcfc"
         padding="4rem"
         overflow="auto"
+        xs={12}
+        md={6}
       >
         <img style={logoStyle} src={LabNlLogo} alt="" />
         <Grid container>
@@ -105,6 +148,7 @@ function SignUp() {
                       input: { fontFamily: fontFamily },
                     },
                   }}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -124,6 +168,7 @@ function SignUp() {
                       input: { fontFamily: fontFamily },
                     },
                   }}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Typography color="rgba(0,0,0,0.4)" fontSize="0.9rem">
@@ -139,12 +184,12 @@ function SignUp() {
               </Typography>
             </Grid>
 
-            <Grid item container gap="4%">
-              <Grid item container flex="48%" flexDirection="column">
+            <Grid item container>
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>Nombre</Typography>
                 </Grid>
-                <Grid item backgroundColor="#ffffff">
+                <Grid item backgroundColor="#ffffff" paddingRight="0.5rem">
                   <TextField
                     required
                     id="outlined-required"
@@ -155,11 +200,12 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setNombre(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>Apellidos</Typography>
                 </Grid>
@@ -174,17 +220,18 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setApellidos(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>
                     Fecha de nacimiento
                   </Typography>
                 </Grid>
-                <Grid item backgroundColor="#ffffff">
+                <Grid item backgroundColor="#ffffff" paddingRight="0.5rem">
                   <TextField
                     required
                     id="outlined-required"
@@ -195,11 +242,12 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setFechaNacimiento(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>
                     País de nacimiento
@@ -216,17 +264,18 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setPaisNacimiento(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography
                     style={formItemTitle}
                   >{`Teléfono (opcional)`}</Typography>
                 </Grid>
-                <Grid item backgroundColor="#ffffff">
+                <Grid item backgroundColor="#ffffff" paddingRight="0.5rem">
                   <TextField
                     required
                     id="outlined-required"
@@ -237,11 +286,12 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setTelefono(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>{`Género`}</Typography>
                 </Grid>
@@ -256,11 +306,12 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setGenero(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography
                     style={formItemTitle}
@@ -277,6 +328,7 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setEscolaridad(e.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -290,12 +342,12 @@ function SignUp() {
               </Typography>
             </Grid>
 
-            <Grid item container gap="4%">
-              <Grid item container flex="48%" flexDirection="column">
+            <Grid item container>
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>Código Postal</Typography>
                 </Grid>
-                <Grid item backgroundColor="#ffffff">
+                <Grid item backgroundColor="#ffffff" paddingRight="0.5rem">
                   <TextField
                     required
                     id="outlined-required"
@@ -306,11 +358,12 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setCodigoPostal(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>Estado</Typography>
                 </Grid>
@@ -325,15 +378,16 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setEstado(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>Ciudad</Typography>
                 </Grid>
-                <Grid item backgroundColor="#ffffff">
+                <Grid item backgroundColor="#ffffff" paddingRight="0.5rem">
                   <TextField
                     required
                     id="outlined-required"
@@ -344,11 +398,12 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setCiudad(e.target.value)}
                   />
                 </Grid>
               </Grid>
 
-              <Grid item container flex="48%" flexDirection="column">
+              <Grid item container sx={12} md={6} flexDirection="column">
                 <Grid item>
                   <Typography style={formItemTitle}>Colonia</Typography>
                 </Grid>
@@ -363,6 +418,7 @@ function SignUp() {
                         input: { fontFamily: fontFamily },
                       },
                     }}
+                    onChange={(e) => setColonia(e.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -387,6 +443,7 @@ function SignUp() {
                       row
                       aria-labelledby="demo-row-radio-buttons-group-label"
                       name="row-radio-buttons-group"
+                      onChange={(e) => setDiscapacidad(e.target.value)}
                     >
                       <FormControlLabel
                         value="no"
@@ -413,6 +470,7 @@ function SignUp() {
                       row
                       aria-labelledby="demo-row-radio-buttons-group-label"
                       name="row-radio-buttons-group"
+                      onChange={(e) => setLenguaIndigena(e.target.value)}
                     >
                       <FormControlLabel
                         value="no"
@@ -441,6 +499,7 @@ function SignUp() {
                       row
                       aria-labelledby="demo-row-radio-buttons-group-label"
                       name="row-radio-buttons-group"
+                      onChange={(e) => setAsociacion(e.target.value)}
                     >
                       <FormControlLabel
                         value="no"
@@ -479,7 +538,7 @@ function SignUp() {
             </Grid>
 
             <Grid item container paddingTop="2rem">
-              <Button variant="contained" fullWidth onClick={createUser}>
+              <Button variant="contained" fullWidth onClick={signupUser}>
                 <Typography textTransform="capitalize" padding="0.5rem">
                   Registrarme
                 </Typography>
@@ -501,31 +560,33 @@ function SignUp() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item width="50%" position="relative">
-        <img style={imageStyle} src={edificioImage} alt="" />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100vh",
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0))",
-          }}
-        />
-        <div style={imageTextStyle}>
-          <Grid container flexDirection="column">
-            <Grid item>
-              <Typography style={imageTypographyStyle}>LABNL</Typography>
+      <Grid item md={6} position="relative">
+        <Box component={Grid} item display={{ xs: "none", md: "block" }}>
+          <img style={imageStyle} src={edificioImage} alt="" />
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100vh",
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0))",
+            }}
+          />
+          <div style={imageTextStyle}>
+            <Grid container flexDirection="column">
+              <Grid item>
+                <Typography style={imageTypographyStyle}>LABNL</Typography>
+              </Grid>
+              <Grid item>
+                <Typography style={imageTypographyStyle}>
+                  Lab Cultural Ciudadano
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Typography style={imageTypographyStyle}>
-                Lab Cultural Ciudadano
-              </Typography>
-            </Grid>
-          </Grid>
-        </div>
+          </div>
+        </Box>
       </Grid>
     </Grid>
   );

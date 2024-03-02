@@ -1,6 +1,10 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import edificioImage from "../assets/edificio.jpg";
 import LabNlLogo from "../assets/labnlLogo.svg";
+import axios from "axios";
+import { url } from "../helpers/API";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const fontFamily = "Roboto, monospace";
 
@@ -35,6 +39,27 @@ const formItemTitle = {
 };
 
 function Login() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [email, setEmail] = useState(
+    location.state ? location.state.email : ""
+  );
+  const [password, setPassword] = useState("");
+
+  const loginUser = async () => {
+    const loginResponse = await axios.post(`${url}/login`, {
+      email: email,
+      password: password,
+    });
+
+    if (loginResponse.data.user) {
+      navigate("/credencial", { state: loginResponse.data.user });
+    } else {
+      console.log("Usuario invalido");
+    }
+  };
+
   return (
     <Grid container width="100%" minHeight="100vh" position="relative">
       <Grid
@@ -44,6 +69,8 @@ function Login() {
         backgroundColor="#fcfcfc"
         padding="6rem 4rem 4rem 4rem"
         overflow="auto"
+        xs={12}
+        md={6}
       >
         <img style={logoStyle} src={LabNlLogo} alt="" />
         <Grid container>
@@ -82,6 +109,8 @@ function Login() {
                       input: { fontFamily: fontFamily },
                     },
                   }}
+                  defaultValue={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -101,6 +130,7 @@ function Login() {
                       input: { fontFamily: fontFamily },
                     },
                   }}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Typography
@@ -113,7 +143,7 @@ function Login() {
               </Typography>
 
               <Grid item container paddingTop="3rem">
-                <Button variant="contained" fullWidth>
+                <Button variant="contained" fullWidth onClick={loginUser}>
                   <Typography textTransform="capitalize" padding="0.5rem">
                     Iniciar sesión
                   </Typography>
@@ -141,31 +171,33 @@ function Login() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item width="50%" position="relative">
-        <img style={imageStyle} src={edificioImage} alt="" />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100vh",
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0))",
-          }}
-        />
-        <div style={imageTextStyle}>
-          <Grid container flexDirection="column">
-            <Grid item>
-              <Typography style={imageTypographyStyle}>LABNL</Typography>
+      <Grid item md={6} position="relative">
+        <Box component={Grid} item display={{ xs: "none", md: "block" }}>
+          <img style={imageStyle} src={edificioImage} alt="" />
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100vh",
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0))",
+            }}
+          />
+          <div style={imageTextStyle}>
+            <Grid container flexDirection="column">
+              <Grid item>
+                <Typography style={imageTypographyStyle}>LABNL</Typography>
+              </Grid>
+              <Grid item>
+                <Typography style={imageTypographyStyle}>
+                  Lab Cultural Ciudadano
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Typography style={imageTypographyStyle}>
-                Lab Cultural Ciudadano
-              </Typography>
-            </Grid>
-          </Grid>
-        </div>
+          </div>
+        </Box>
       </Grid>
     </Grid>
   );

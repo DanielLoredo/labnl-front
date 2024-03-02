@@ -2,6 +2,8 @@ import { Grid, Typography } from "@mui/material";
 import LabNlLogo from "../assets/labnlLogo.svg";
 import { FaUserCircle } from "react-icons/fa";
 import Barcode from "react-barcode";
+import { useLocation } from "react-router-dom";
+import { useRef } from "react";
 
 const fontFamily = "Arial, monospace";
 
@@ -10,6 +12,11 @@ const logoStyle = {
 };
 
 function Credencial() {
+  const location = useLocation();
+  const nombre = useRef(location.state.nombre);
+  const apellidos = useRef(location.state.apellidos);
+  const email = useRef(location.state.email);
+
   return (
     <Grid
       container
@@ -61,19 +68,19 @@ function Credencial() {
           </Typography>
           <Typography
             fontFamily={fontFamily}
-            fontSize="2rem"
+            fontSize="1.6rem"
             fontWeight="600"
             color="#363A3C"
           >
-            Mauricio Portilla
+            {`${nombre.current} ${apellidos.current}`}
           </Typography>
         </Grid>
         <Grid item padding="1rem" backgroundColor="#E8C53B" borderRadius="1rem">
           <Barcode
-            value="A01284184"
+            value={"A01284184"}
             displayValue={false}
             lineColor="#363A3C"
-            width="2.2"
+            width="2"
           />
         </Grid>
       </Grid>
