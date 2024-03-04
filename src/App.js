@@ -6,6 +6,7 @@ import Credencial from "./Pages/Credencial";
 import Tablero from "./Pages/Tablero";
 import Seleccion from "./Pages/Seleccion";
 import ScanUserField from "./Pages/ScanUserField";
+import RegistroExitoso from "./Pages/RegistroExitoso";
 
 const theme = createTheme({
   typography: {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/tablero" element={<Tablero />} />
         <Route path="/seleccion" element={<Seleccion />} />
         <Route path="/lectorCodigo" element={<ScanUserField />} />
+        <Route path="/registroExitoso" element={<RegistroExitoso />} />
       </Routes>
     </ThemeProvider>
   );
