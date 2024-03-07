@@ -16,7 +16,7 @@ function ScanUserField() {
   const onSubmitCodigo = async () => {
     const submitCodigoResponse = await axios.post(
       //   `${url}/lecturaCredencial?email=${email}`
-      `${url}/lecturaCredencial?email=A01284184@tec.mx`
+      `${url}/lecturaCredencial?email=A01284185@tec.mx`
     );
     setUser(submitCodigoResponse.data.user);
   };

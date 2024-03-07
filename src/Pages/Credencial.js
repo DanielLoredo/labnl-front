@@ -72,12 +72,13 @@ function Credencial() {
             fontWeight="600"
             color="#363A3C"
           >
-            {`${nombre.current} ${apellidos.current}`}
+            {/* {`${nombre.current} ${apellidos.current}`} */}
+            Mauricio Portilla
           </Typography>
         </Grid>
         <Grid item padding="1rem" backgroundColor="#E8C53B" borderRadius="1rem">
           <Barcode
-            value={"A01284184"}
+            value={"A01284185"}
             displayValue={false}
             lineColor="#363A3C"
             width="2"
